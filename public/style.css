@@ -1,0 +1,60 @@
+:root {
+  --bg: #f4f8fb;
+  --card: #ffffff;
+  --text: #1f2d3d;
+  --accent: #1f7aec;
+}
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+#app {
+  max-width: 980px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.subtitle { text-align: center; margin-top: 0; }
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  margin-bottom: 16px;
+}
+.panel { margin-top: 16px; display: grid; gap: 8px; }
+.actions { display: flex; gap: 8px; justify-content: center; }
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+input, select {
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid #d0d9e2;
+}
+.grid { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+.hidden { display: none !important; }
+.messages {
+  max-height: 180px;
+  overflow: auto;
+  background: #f7fbff;
+  border: 1px solid #dce8f5;
+  border-radius: 8px;
+  padding: 8px;
+}
+#players { padding-left: 18px; }
+.result { font-weight: bold; }
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+}
