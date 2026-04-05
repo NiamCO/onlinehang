@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Hangman</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section id="landing" class="card">
+        <h1>Online Hangman</h1>
+        <p class="subtitle">Multiplayer guessing in real time.</p>
+
+        <div class="actions">
+          <button id="showCreate">Create Room</button>
+          <button id="showJoin">Join Room</button>
+        </div>
+
+        <form id="createForm" class="panel hidden">
+          <h2>Create Room</h2>
+          <input required name="playerName" placeholder="Your Name" />
+          <input required name="roomName" placeholder="Room Name" />
+          <input required name="roomCode" placeholder="Room Code" maxlength="10" />
+          <label>Mode
+            <select name="mode">
+              <option value="easy">Easy</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+          <label>Word Source
+            <select name="wordSource">
+              <option value="random">Random word for all players</option>
+              <option value="host">Host-chosen word / selected setter</option>
+            </select>
+          </label>
+          <button type="submit">Create</button>
+        </form>
+
+        <form id="joinForm" class="panel hidden">
+          <h2>Join Room</h2>
+          <input required name="playerName" placeholder="Your Name" />
+          <input required name="roomCode" placeholder="Room Code" maxlength="10" />
+          <button type="submit">Join</button>
+        </form>
+      </section>
+
+      <section id="game" class="hidden">
+        <header class="game-header card">
+          <h2 id="roomTitle"></h2>
+          <div id="meta"></div>
+        </header>
+
+        <section class="grid">
+          <article class="card">
+            <h3>Hangman</h3>
+            <pre id="hangman"></pre>
+            <p><strong>Wrong guesses:</strong> <span id="wrongLetters">None</span></p>
+            <p><strong>Word:</strong> <span id="wordMask"></span></p>
+            <p id="result" class="result"></p>
+          </article>
+
+          <article class="card">
+            <h3>Round Controls</h3>
+            <div id="hostControls" class="hidden">
+              <label>Next Word Setter
+                <select id="setterSelect"></select>
+              </label>
+              <button id="applySetter">Apply Setter</button>
+              <button id="startRound">Start Round</button>
+            </div>
+
+            <div id="setterControls" class="hidden">
+              <h4>You are the word-setter</h4>
+              <input id="setterWord" placeholder="Enter word/phrase" />
+              <button id="submitWord">Submit Word</button>
+            </div>
+
+            <div id="guessControls">
+              <input id="letterGuess" maxlength="1" placeholder="Letter" />
+              <button id="guessLetter">Guess Letter</button>
+              <input id="wordGuess" placeholder="Guess full word/phrase" />
+              <button id="guessWord">Guess Word</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="card">
+          <h3>Players</h3>
+          <ul id="players"></ul>
+        </section>
+
+        <section class="card" id="chatBox">
+          <h3>Host Broadcast</h3>
+          <div id="messages" class="messages"></div>
+          <div id="hostMessageControls" class="hidden">
+            <input id="broadcastText" placeholder="Message to all players" />
+            <button id="sendBroadcast">Send</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
